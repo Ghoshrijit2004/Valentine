@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+
+<!-- IMPORTANT FOR MOBILE -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>For My Love ❤️</title>
 
 <style>
@@ -9,47 +14,46 @@
 body{
 margin:0;
 background:black;
-overflow:hidden;
 font-family:Arial;
 color:white;
 text-align:center;
+overflow-x:hidden;
 }
 
-#canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
+/* container */
+
+.container{
+padding:20px;
+max-width:420px;
+margin:auto;
 }
+
+/* envelope */
 
 #envelope{
-position:absolute;
-top:40%;
-left:50%;
-transform:translate(-50%,-50%);
 font-size:90px;
 cursor:pointer;
+margin-top:120px;
 }
 
 /* quiz */
 
 #quiz{
 display:none;
-position:absolute;
-top:80px;
-width:100%;
+margin-top:20px;
 }
 
 .question{
-margin:15px;
+margin:20px 0;
 }
 
 button{
-padding:10px 20px;
-margin:5px;
+padding:10px 16px;
+margin:6px;
 border:none;
 border-radius:20px;
 cursor:pointer;
+font-size:14px;
 }
 
 .correct{
@@ -66,13 +70,12 @@ color:white;
 
 #slideshow{
 display:none;
-position:absolute;
-bottom:260px;
-width:100%;
+margin-top:20px;
 }
 
 #photo{
-width:260px;
+width:100%;
+max-width:280px;
 height:auto;
 border-radius:20px;
 }
@@ -81,9 +84,7 @@ border-radius:20px;
 
 #proposal{
 display:none;
-position:absolute;
-bottom:120px;
-width:100%;
+margin-top:20px;
 }
 
 .yes{
@@ -93,12 +94,16 @@ color:white;
 
 .no{
 background:white;
+color:black;
 }
 
+/* ring */
+
 #ring{
-font-size:90px;
+font-size:80px;
 display:none;
 animation:ring 2s infinite;
+margin-top:10px;
 }
 
 @keyframes ring{
@@ -107,9 +112,11 @@ animation:ring 2s infinite;
 100%{transform:scale(1)}
 }
 
+/* fireworks */
+
 .spark{
-position:absolute;
-font-size:24px;
+position:fixed;
+font-size:22px;
 animation:explode 1.2s forwards;
 }
 
@@ -118,12 +125,17 @@ animation:explode 1.2s forwards;
 100%{transform:scale(3);opacity:0}
 }
 
+#final{
+font-size:28px;
+margin-top:10px;
+}
+
 </style>
 </head>
 
 <body>
 
-<canvas id="canvas"></canvas>
+<div class="container">
 
 <div id="envelope">💌</div>
 
@@ -153,8 +165,8 @@ Favourite food?<br>
 
 <div class="question">
 Favourite singer?<br>
-<button onclick="check(this,false)">Arijit Singh</button>
-<button onclick="check(this,false)">Shreya Ghoshal</button>
+<button onclick="check(this,false)">Arijit</button>
+<button onclick="check(this,false)">Shreya</button>
 <button onclick="check(this,true)">Sonu Nigam</button>
 </div>
 
@@ -179,18 +191,17 @@ His birthday?<br>
 <button onclick="check(this,false)">15 Dec</button>
 </div>
 
-<br>
 <button onclick="finishQuiz()">Submit</button>
 
 </div>
 
-<!-- slideshow -->
+<!-- SLIDESHOW -->
 
 <div id="slideshow">
 <img id="photo" src="photo1.jpg">
 </div>
 
-<!-- proposal -->
+<!-- PROPOSAL -->
 
 <div id="proposal">
 
@@ -207,7 +218,7 @@ His birthday?<br>
 
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+</div>
 
 <script>
 
@@ -223,7 +234,7 @@ document.getElementById("music").play();
 
 };
 
-/* quiz logic */
+/* quiz */
 
 let score=0;
 
@@ -245,9 +256,7 @@ function finishQuiz(){
 if(score>=4){
 
 document.getElementById("quiz").style.display="none";
-
 document.getElementById("slideshow").style.display="block";
-
 document.getElementById("proposal").style.display="block";
 
 }else{
@@ -306,7 +315,7 @@ setTimeout(()=>s.remove(),1200);
 
 }
 
-/* yes */
+/* YES */
 
 function yesClick(){
 
